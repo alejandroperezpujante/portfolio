@@ -1,0 +1,35 @@
+---
+import { Image } from "astro:assets";
+
+import CC from "@/assets/images/cc.svg";
+import BY from "@/assets/images/by.svg";
+import NC from "@/assets/images/nc.svg";
+import ND from "@/assets/images/nd.svg";
+---
+
+<footer>
+	<p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/">
+		<a property="dct:title" rel="cc:attributionURL" href="https://perezpujantealejandro.dev"> This portfolio </a>
+
+		<span> © 2024 </span> by
+
+		<a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://perezpujantealejandro.dev"
+			>Alejandro Pérez Pujante</a>
+
+		is licensed under
+
+		<a
+			href="https://creativecommons.org/licenses/by-nc-nd/4.0/?ref=chooser-v1"
+			target="_blank"
+			rel="license noopener noreferrer"
+			class="inline-block"
+		>
+			CC BY-NC-ND 4.0
+
+			<Image src={CC} width="22" height="22" alt="" />
+			<Image src={BY} width="22" height="22" alt="" />
+			<Image src={NC} width="22" height="22" alt="" />
+			<Image src={ND} width="22" height="22" alt="" />
+		</a>
+	</p>
+</footer>

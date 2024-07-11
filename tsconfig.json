@@ -1,0 +1,11 @@
+{
+  "extends": "astro/tsconfigs/strictest",
+	"compilerOptions": {
+		"lib": ["Es2023", "DOM", "DOM.Iterable"],
+
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["src/*"],
+		}
+	},
+}

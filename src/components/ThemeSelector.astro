@@ -1,0 +1,52 @@
+---
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<div>
+	<select id="theme-selector">
+		{(["light", "dark", "system"] as const).map((theme) =>
+			<option value={theme}>
+				{t(`theme.${theme}`)}
+			</option>
+		)}
+	</select>
+</div>
+
+<noscript>
+	<style>
+		#theme-selector {
+			display: none;
+		}
+	</style>
+</noscript>
+
+<script>
+	const LOCAL_STORAGE_KEY = "user-theme";
+
+	const themeSelectorEl = document.querySelector<HTMLSelectElement>("#theme-selector");
+	if (!themeSelectorEl) {
+		throw new Error("Theme selector element not found");
+	}
+
+	const currentTheme = localStorage.getItem(LOCAL_STORAGE_KEY) ?? "system";
+	themeSelectorEl.value = currentTheme;
+
+	function updateTheme(key: string) {
+		if (key === "system") {
+			delete document.documentElement.dataset.theme;
+			localStorage.removeItem(LOCAL_STORAGE_KEY);
+			return;
+		}
+
+		document.documentElement.dataset.theme = key;
+		localStorage.setItem(LOCAL_STORAGE_KEY, key);
+	}
+
+	themeSelectorEl.addEventListener("change", (e) => {
+		const target = e.target as HTMLSelectElement;
+		updateTheme(target.value);
+	});
+</script>

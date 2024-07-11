@@ -1,0 +1,26 @@
+<div id="mobile-navigation" class="md:hidden sticky bottom-0 z-10 transform-gpu transition-transform duration-300">
+	<p>howdy</p>
+</div>
+
+<script>
+	const mobileNavigationEl = document.querySelector("#mobile-navigation");
+	if (!mobileNavigationEl) {
+		throw new Error("Mobile navigation element not found");
+	}
+
+	let lastScrollTop = 0;
+	function updateVisibility() {
+		const currentScroll = document.documentElement.scrollTop;
+		const isScrollingDown = window.scrollY > lastScrollTop;
+
+		mobileNavigationEl?.classList.toggle("translate-y-full", isScrollingDown);
+
+		lastScrollTop = currentScroll;
+	}
+
+	function handleScroll() {
+		requestAnimationFrame(updateVisibility);
+	}
+
+	document.addEventListener("scroll", handleScroll);
+</script>
