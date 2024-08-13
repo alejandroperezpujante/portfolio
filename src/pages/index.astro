@@ -1,16 +1,68 @@
 ---
-
+const AUTHOR = "Alejandro Perez Pujante";
+const canonical = new URL(Astro.url, Astro.site);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Porfolio de {AUTHOR} - Desarrollador Web</title>
+
+    <meta
+      name="description"
+      content=`Porfolio de ${AUTHOR}, desarrollador web especializado en tecnologías frontend y accesibilidad web.`
+    />
+    <meta name="author" content="Alejandro Perez Pujante" />
+    <meta
+      name="keywords"
+      content="portfolio, proyectos, desarrollo web, frontend, vue, javascript, html, css, typescript, node"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="generator" content={Astro.generator} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonical} />
+  </head>
+  <body
+    class="min-h-dvh flex flex-col bg-background text-foreground high-dpi:antialiased"
+  >
+    <header></header>
+    <main class="flex-1">
+			<p>howdy</p>
+		</main>
+    <footer></footer>
+  </body>
 </html>
+
+<style is:global>
+  body {
+    text-rendering: optimizeLegibility;
+  }
+
+  [data-theme="light"],
+  :root:not([data-theme="dark"]) {
+    --background: 100% 0 0;
+    --foreground: 0% 0 0;
+
+    color-scheme: light;
+  }
+  @media only screen and (prefers-color-scheme: dark) {
+    [data-theme="dark"],
+    :root:not([data-theme="light"]) {
+      --background: 0% 0 0;
+      --foreground: 100% 0 0;
+
+      color-scheme: dark;
+    }
+  }
+  [data-theme="dark"] {
+    --background: 0% 0 0;
+    --foreground: 100% 0 0;
+
+    color-scheme: dark;
+  }
+</style>
