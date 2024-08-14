@@ -1,4 +1,14 @@
 ---
+import "../styles/tailwind.css";
+import { Image } from "astro:assets";
+import * as Card from "../components/card";
+import logoNttData from "../assets/images/logos/logo_ntt_data.png";
+import logoKnowmadMood from "../assets/images/logos/logo_knowmad_mood.png";
+import LucideExternalLink from "~icons/lucide/external-link";
+import LucideChevronsDown from "~icons/lucide/chevrons-down";
+import LucideGitHub from "~icons/lucide/github";
+import LucideLinkedIn from "~icons/lucide/linkedin";
+
 const AUTHOR = "Alejandro Perez Pujante";
 const canonical = new URL(Astro.url, Astro.site);
 ---
@@ -27,14 +37,213 @@ const canonical = new URL(Astro.url, Astro.site);
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonical} />
   </head>
-  <body
-    class="min-h-dvh flex flex-col bg-background text-foreground high-dpi:antialiased"
-  >
+  <body class="min-h-dvh flex flex-col high-dpi:antialiased">
     <header></header>
-    <main class="flex-1">
-			<p>howdy</p>
-		</main>
-    <footer></footer>
+
+    <main
+      class="flex-1 max-w-screen-md mx-auto [&>section]:min-h-dvh"
+    >
+      <section class="flex flex-col items-center justify-center">
+        <h1 id="inicio" class="mb-2 text-4xl font-bold">¡Hola! Soy {AUTHOR}</h1>
+        <p class="text-lg">
+          Desarrollador web especializado en tecnologías frontend y
+          accesibilidad web.
+        </p>
+
+        <a href="#experiencia">
+          <LucideChevronsDown class="w-8 h-8 mx-auto mt-8 animate-bounce" />
+        </a>
+      </section>
+
+      <section class="flex flex-col items-center justify-center">
+        <h2 id="experiencia" class="mb-2 text-3xl font-bold">Experiencia</h2>
+        <p class="text-lg">
+          Aquí puedes ver algunas de las empresas con las que he tenido el
+          placer de trabajar y los proyectos en los que he participado.
+        </p>
+
+        <ul class="flex items-center gap-2">
+          <li>
+            <Card.Root>
+              <Card.Header>
+                <Card.Title>
+                  <Image
+                    src={logoNttData}
+                    height={50}
+                    width={50}
+                    alt="Logo de NTT Data"
+                  />
+                  NTT Data
+                </Card.Title>
+              </Card.Header>
+
+              <Card.Content>
+                <p>
+                  Empecé mi carrera profesional en NTT Data, donde trabajé en
+                  proyectos de desarrollo web con tecnologías como Angular y
+                  PHP.
+                </p>
+                <p>
+                  En NTT Data tuve la oportunidad de trabajar en proyectos de
+                  grandes clientes como AENA y la operadora de telefonía móvil
+                  Orange.
+                </p>
+              </Card.Content>
+            </Card.Root>
+          </li>
+
+					<li>
+            <Card.Root>
+              <Card.Header>
+                <Card.Title>
+                  <Image
+                    src={logoKnowmadMood}
+                    height={50}
+                    width={50}
+                    alt="Logo de Knowmad Mood"
+                  />
+                  <a
+                    href="https://knowmadmood.com/es"
+                    target="_blank"
+                    rel="noopener noreferrer">Knowmad Mood</a
+                  >
+                </Card.Title>
+              </Card.Header>
+
+              <Card.Content>
+                <p>
+                  En Knowmad Mood trabajo en proyectos de desarrollo web con
+                  tecnologías como Angular, Vue.js y Node.js.
+                </p>
+                <p>
+                  En Knowmad Mood tuve la oportunidad de trabajar en proyectos
+                  de grandes clientes como el banco BBVA, Pulso Informática y,
+                  actualmente, la gran plataforma de retail El Corte Inglés.
+                </p>
+              </Card.Content>
+            </Card.Root>
+          </li>
+        </ul>
+
+        <a href="#proyectos">
+          <LucideChevronsDown class="w-8 h-8 mx-auto mt-8 animate-bounce" />
+        </a>
+      </section>
+
+      <section class="flex flex-col items-center justify-center">
+        <h2 id="proyectos" class="mb-2 text-3xl font-bold">Proyectos</h2>
+        <p class="text-lg">
+          Aquí puedes ver algunos de los proyectos que he creado.
+        </p>
+
+        <ul>
+          <li>
+            <Card.Root>
+              <Card.Title>Proyecto 1</Card.Title>
+              <p>
+                Descripción del proyecto 1. Lorem ipsum dolor sit amet,
+                consectetur adipiscing elit. Nullam nec purus nec nunc.
+              </p>
+            </Card.Root>
+          </li>
+          <li>
+            <Card.Root>
+              <Card.Title>Proyecto 2</Card.Title>
+              <p>
+                Descripción del proyecto 2. Lorem ipsum dolor sit amet,
+                consectetur adipiscing elit. Nullam nec purus nec nunc.
+              </p>
+            </Card.Root>
+          </li>
+          <li>
+            <Card.Root>
+              <Card.Title>Proyecto 3</Card.Title>
+              <p>
+                Descripción del proyecto 3. Lorem ipsum dolor sit amet,
+                consectetur adipiscing elit. Nullam nec purus nec nunc.
+              </p>
+            </Card.Root>
+          </li>
+        </ul>
+
+        <a href="#contacto">
+          <LucideChevronsDown class="w-8 h-8 mx-auto mt-8 animate-bounce" />
+        </a>
+      </section>
+
+      <section class="flex flex-col justify-center">
+        <h2 id="contacto" class="mb-2 text-3xl font-bold">Contacto</h2>
+        <p class="text-lg">
+          Si quieres ponerte en contacto conmigo, puedes hacerlo a través de
+          estos canales.
+        </p>
+
+        <ul>
+          <li>
+            <Card.Root>
+              <Card.Header>
+                <Card.Title>Redes sociales</Card.Title>
+              </Card.Header>
+              <Card.Content>
+                <ul class="flex items-center space-x-4">
+                  <li>
+                    <a
+                      href="https://github.com/alejandroperezpujante"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <LucideGitHub class="w-8 h-8" />
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.linkedin.com/in/perezpujantealejandro/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <LucideLinkedIn class="w-8 h-8" />
+                    </a>
+                  </li>
+                </ul>
+              </Card.Content>
+
+              <footer></footer>
+            </Card.Root>
+          </li>
+          <li>
+            <Card.Root>
+              <Card.Header>
+                <Card.Title>Correo electrónico</Card.Title>
+              </Card.Header>
+              <Card.Content>
+                <p>
+                  <a
+                    href="mailto:perezpujantealejandro1@gmail.com"
+                    class="flex items-center gap-2"
+                  >
+                    Correo personal: <span class="font-medium"
+                      >perezpujantealejandro1@gmail.com</span
+                    >
+                    <LucideExternalLink class="w-4 h-4" />
+                  </a>
+                </p>
+                <p>
+                  <a
+                    href="mailto:developer@perezpujantealejandro.dev"
+                    class="flex items-center gap-2"
+                  >
+                    Correo profesional: <span class="font-medium"
+                      >developer@perezpujantealejandro.dev</span
+                    >
+                    <LucideExternalLink class="w-4 h-4" />
+                  </a>
+                </p>
+              </Card.Content>
+            </Card.Root>
+          </li>
+        </ul>
+      </section>
+    </main>
   </body>
 </html>
 
@@ -43,26 +252,20 @@ const canonical = new URL(Astro.url, Astro.site);
     text-rendering: optimizeLegibility;
   }
 
-  [data-theme="light"],
-  :root:not([data-theme="dark"]) {
-    --background: 100% 0 0;
-    --foreground: 0% 0 0;
-
-    color-scheme: light;
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply text-balance;
   }
-  @media only screen and (prefers-color-scheme: dark) {
-    [data-theme="dark"],
-    :root:not([data-theme="light"]) {
-      --background: 0% 0 0;
-      --foreground: 100% 0 0;
 
-      color-scheme: dark;
+  p {
+    @apply max-w-prose text-pretty;
+  }
+
+  @media only screen and (prefers-reduced-motion: no-preference) {
+    :has(:target) {
+      @apply scroll-smooth scroll-mt-14;
     }
-  }
-  [data-theme="dark"] {
-    --background: 0% 0 0;
-    --foreground: 100% 0 0;
-
-    color-scheme: dark;
   }
 </style>

@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  [data-theme="light"],
+  :root:not([data-theme="dark"]) {
+    --background: 100% 0 0;
+    --foreground: 14.09% 0.004 285.89;
+
+		--card: 100% 0 0;
+		--card-foreground: 14.05% 0.004 285.82;
+
+		--muted: 96.76% 0.001 286.38;
+		--muted-foreground: 55.19% 0.014 285.94;
+
+		--border: 91.97% 0.004 286.32;
+
+    color-scheme: light;
+  }
+
+  @media only screen and (prefers-color-scheme: dark) {
+    [data-theme="dark"],
+    :root:not([data-theme="light"]) {
+      --background: 14.09% 0.004 285.89;
+      --foreground: 98.48% 0 0;
+
+			--muted: 27.41% 0.005 286.03;
+			--muted-foreground: 71.19% 0.013 286.07;
+
+			--card: 0% 0 0;
+			--card-foreground: 98.48% 0 0;
+
+			--border: 27.41% 0.005 286.03;
+
+      color-scheme: dark;
+    }
+  }
+
+  [data-theme="dark"] {
+    --background: 14.09% 0.004 285.89;
+    --foreground: 98.48% 0 0;
+
+		--muted: 27.41% 0.005 286.03;
+		--muted-foreground: 71.19% 0.013 286.07;
+
+		--card: 0% 0 0;
+		--card-foreground: 98.48% 0 0;
+
+    --border: 27.41% 0.005 286.03;
+
+    color-scheme: dark;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+	body {
+		@apply bg-background text-foreground;
+	}
+}
