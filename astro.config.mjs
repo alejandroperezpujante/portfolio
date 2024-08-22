@@ -6,17 +6,9 @@ import icons from "unplugin-icons/vite";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://portfolio.perezpujantealejandro.dev",
-  integrations: [
-    tailwind({ applyBaseStyles: false }),
-		sitemap(),
-		compress()
-  ],
+  site: "https://perezpujantealejandro.dev",
+  integrations: [tailwind({ applyBaseStyles: false }), sitemap(), compress()],
   vite: {
-    plugins: [
-      icons({
-        compiler: "astro",
-      }),
-    ],
+    plugins: [icons({ compiler: "astro" })],
   },
 });
