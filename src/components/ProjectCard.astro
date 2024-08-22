@@ -1,0 +1,46 @@
+---
+import { Image } from "astro:assets";
+import nuxtNewsScreenShot from "../assets/images/nuxt_news_screenshot.png";
+import * as Card from "./ui/card";
+import LucideGlobe from "~icons/lucide/globe";
+import LucideGitHub from "~icons/lucide/github";
+import LucideTriangleAlert from "~icons/lucide/triangle-alert";
+
+interface Props {
+  project: {
+    title: string;
+		deploymentHref: string;
+		repoHref: string;
+    description: string;
+		isUnderConstruction?: boolean;
+  };
+}
+
+const {
+  project: { title, deploymentHref, repoHref, description, isUnderConstruction = false },
+} = Astro.props;
+---
+
+<Card.Root class="w-[400px]">
+	<Image src={nuxtNewsScreenShot} alt={title} class="rounded" />
+	<Card.Header class="flex-row">
+		<Card.Title class="flex items-center gap-2">
+			{title}
+		</Card.Title>
+		<nav class="flex-1 flex items-center justify-end gap-3">
+			<a href={deploymentHref} target="_blank" aria-label="Enlace a la demo">
+				<LucideGlobe class="size-5" />
+			</a>
+			<a href={repoHref} target="_blank" aria-label="Enlace el repositorio" rel="noopener noreferrer">
+				<LucideGitHub class="size-5" />
+			</a>
+		</nav>
+		</Card.Header>
+  <Card.Content>{description}</Card.Content>
+	{isUnderConstruction && (
+		<Card.Footer class="gap-2 text-yellow-500">
+			<LucideTriangleAlert class="size-5" />
+			<span>En construcción</span>
+		</Card.Footer>
+	)}
+</Card.Root>

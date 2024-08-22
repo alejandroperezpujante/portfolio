@@ -1,0 +1,23 @@
+---
+import ProjectCard from "../ProjectCard.astro";
+
+const PROJECTS = [
+	{
+		title: 'Nuxt News',
+		description: 'Clon de Hacker News creado con Nuxt 3. Incluye funcionalidades como paginación, búsqueda y filtrado de noticias.',
+		deploymentHref: 'https://nuxtnews.perezpujantealejandro.dev',
+		repoHref: 'https://github.com/alejandroperezpujante/nuxt-news',
+		isUnderConstruction: true
+	}
+]
+---
+
+<ul class="grid auto-cols-auto">
+  {
+    PROJECTS.map((project) => (
+      <li>
+        <ProjectCard {project} />
+      </li>
+    ))
+  }
+</ul>
