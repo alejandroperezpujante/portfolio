@@ -1,0 +1,15 @@
+---
+import type { HTMLTag } from 'astro/types';
+import { cn } from '../../../utils';
+
+interface Props {
+	class?: string
+	headingLevel?: HTMLTag
+}
+
+const { class: className, headingLevel: Element = 'h3' } = Astro.props;
+---
+
+<Element class={cn("text-3xl font-bold", className)}>
+	<slot />
+</Element>
