@@ -133,13 +133,15 @@ const canonical = new URL(Astro.url, Astro.site);
         </a>
       </section>
 
-      <section class="flex flex-col items-center justify-center">
-        <h2 id="proyectos" class="mb-2 text-3xl font-bold">Proyectos</h2>
-        <p class="text-lg">
-          Aquí puedes ver algunos de los proyectos que he creado.
-        </p>
+      <section class="flex flex-col items-center justify-around">
+        <div class="flex flex-col items-center justify-center">
+          <h2 id="proyectos" class="mb-2 text-3xl font-bold">Proyectos</h2>
+          <p class="text-lg">
+            Aquí puedes ver algunos de los proyectos que he creado.
+          </p>
 
-        <ProjectList />
+          <ProjectList/>
+        </div>
 
         <a href="#contacto" aria-label="Ir a la sección de contacto">
           <LucideChevronsDown class="w-8 h-8 mx-auto mt-8 animate-bounce" />

@@ -1,6 +1,6 @@
 ---
+import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
-import nuxtNewsScreenShot from "../assets/images/nuxt_news_screenshot.png";
 import * as Card from "./ui/card";
 import LucideGlobe from "~icons/lucide/globe";
 import LucideGitHub from "~icons/lucide/github";
@@ -8,6 +8,7 @@ import LucideTriangleAlert from "~icons/lucide/triangle-alert";
 
 interface Props {
   project: {
+		bannerImage: ImageMetadata;
     title: string;
 		deploymentHref: string;
 		repoHref: string;
@@ -17,12 +18,19 @@ interface Props {
 }
 
 const {
-  project: { title, deploymentHref, repoHref, description, isUnderConstruction = false },
+  project: {
+		bannerImage,
+		title,
+		deploymentHref,
+		repoHref,
+		description,
+		isUnderConstruction = false
+	},
 } = Astro.props;
 ---
 
-<Card.Root class="w-[400px]">
-	<Image src={nuxtNewsScreenShot} alt={title} class="rounded" />
+<Card.Root class="h-full w-[350px]">
+	<Image src={bannerImage} alt={title} class="rounded" />
 	<Card.Header class="flex-row">
 		<Card.Title class="flex items-center gap-2">
 			{title}
@@ -37,6 +45,7 @@ const {
 		</nav>
 		</Card.Header>
   <Card.Content>{description}</Card.Content>
+
 	{isUnderConstruction && (
 		<Card.Footer class="gap-2 text-yellow-500">
 			<LucideTriangleAlert class="size-5" />
