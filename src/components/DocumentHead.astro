@@ -6,7 +6,11 @@ const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
 const title = t('head.title')
 const description = t('head.description')
-const canonical = new URL(Astro.url, Astro.site);
+const canonical = new URL(Astro.url, Astro.site)
+const seoImg = new URL(
+	'/alejandro_perez_pujante_transparent_smaller.png',
+	Astro.site,
+);
 ---
 
 <head>
@@ -35,10 +39,7 @@ const canonical = new URL(Astro.url, Astro.site);
 
 	<meta name="og:title" content={title} />
 	<meta name="og:description" content={description} />
-	<meta
-		name="og:image"
-		content="/alejandro_perez_pujante_transparent_smaller.png"
-	/>
+	<meta name="og:image" content={seoImg.href} />
 	<meta name="og:url" content={canonical} />
 	<meta name="og:type" content="website" />
 	<meta name="og:site_name" content={AUTHOR} />
@@ -46,10 +47,7 @@ const canonical = new URL(Astro.url, Astro.site);
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content={title} />
 	<meta name="twitter:description" content={description} />
-	<meta
-		name="twitter:image"
-		content="/alejandro_perez_pujante_transparent_smaller.png"
-	/>
+	<meta name="twitter:image" content={seoImg.href} />
 	<meta name="twitter:url" content={canonical} />
 	<meta name="twitter:site" content={AUTHOR} />
 
