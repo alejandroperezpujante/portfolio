@@ -9,6 +9,7 @@ const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
 
 const blockData: BaseBlockProps = {
+	id: t('home.projects.link'),
 	title: t('home.projects.title'),
 	subtitle: t('home.projects.description'),
 	nextBlockId: t('home.contact.link'),
