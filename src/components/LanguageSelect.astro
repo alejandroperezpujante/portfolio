@@ -1,0 +1,26 @@
+---
+import type { LanguageKey } from '../i18n/ui'
+import { LANGUAGE_FLAGS, LANGUAGES } from '../i18n/ui'
+import { getLangFromUrl, useTranslatedPath } from '../i18n/utils'
+
+const lang = getLangFromUrl(Astro.url)
+const translatePath = useTranslatedPath(lang);
+---
+
+<nav class="border-2 rounded-md px-4 py-2 shadow">
+	<ul class="flex items-center gap-4">
+		{
+			Object.entries(LANGUAGES).map(([key, value]) => (
+				<li>
+						<a
+							href={translatePath('/', key)}
+							class={`flex items-center gap-2 ${key === lang ? '' : 'opacity-40'}`}
+						>
+							{LANGUAGE_FLAGS[key as LanguageKey]}
+							<span class="font-semibold">{value}</span>
+						</a>
+				</li>
+			))
+		}
+	</ul>
+</nav>

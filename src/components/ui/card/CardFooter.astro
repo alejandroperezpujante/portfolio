@@ -1,14 +1,14 @@
 ---
-import { cn } from "../../../utils";
+import { cn } from '../../../utils'
 
 interface Props {
-	class?: string;
+	class?: string
 }
 
 const { class: className } = Astro.props;
 ---
 
 
-<div class={cn("flex items-center p-6 pt-0", className)}>
+<div class={cn('flex items-center p-3 pt-0', className)}>
 	<slot />
 </div>

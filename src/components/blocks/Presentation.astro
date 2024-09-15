@@ -1,0 +1,43 @@
+---
+import { Image } from 'astro:assets'
+import frontImage from '../../assets/images/alejandro_perez_pujante_transparent_smaller.png'
+import { AUTHOR } from '../../consts'
+import { getLangFromUrl, useTranslations } from '../../i18n/utils'
+import NextSectionLink from '../NextSectionLink.astro'
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang);
+---
+
+<section class="min-h-dvh flex flex-col justify-center gap-6 md:gap-20 4k:gap-40">
+	<div
+		class="flex flex-col md:flex-row-reverse items-center justify-center gap-4"
+	>
+		<Image
+			src={frontImage}
+			alt={AUTHOR}
+			height={300}
+			loading="eager"
+			widths={[240, 540, 720, frontImage.width]}
+			sizes={`(width <= 360px) 240px, (width <= 720px) 540px, (width <= 1600px) 720px, ${frontImage.width}px`}
+			class="rounded-full"
+		/>
+		<h1
+			id={t('home.presentation.link')}
+			class="text-4xl md:text-6xl 4k:text-9xl font-black text-center md:text-left max-w-[20ch]"
+		>
+			{t('home.presentation.title')}
+		</h1>
+	</div>
+
+	<div class="space-y-4 lg:mx-auto">
+		<p class="text-lg md:text-2xl 4k:text-5xl font-medium">
+			{t('home.presentation.description.position')}
+		</p>
+		<p class="text-lg md:text-2xl 4k:text-5xl font-medium">
+			{t('home.presentation.description.mission')}
+		</p>
+	</div>
+
+	<NextSectionLink href={t('home.about.link')} />
+</section>

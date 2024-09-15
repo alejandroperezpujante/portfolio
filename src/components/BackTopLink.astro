@@ -1,0 +1,13 @@
+---
+import ChevronsUp from '~icons/lucide/chevrons-up'
+import { getLangFromUrl, useTranslations } from '../i18n/utils'
+
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+const href = `#${t('home.presentation.link')}`
+---
+
+<a {href} aria-label={`Go to ${href}`} class="fixed bottom-4 right-4 p-2 bg-white/10 backdrop-blur-md rounded-full">
+	<ChevronsUp class="w-4 h-4" />
+</a>

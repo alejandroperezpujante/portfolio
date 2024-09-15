@@ -1,0 +1,21 @@
+---
+import BackTopLink from '../components/BackTopLink.astro'
+import DocumentHead from '../components/DocumentHead.astro'
+import LanguageSelect from '../components/LanguageSelect.astro'
+import { getLangFromUrl } from '../i18n/utils'
+import '../styles/tailwind.css'
+
+const lang = getLangFromUrl(Astro.url);
+---
+
+<!doctype html>
+<html {lang}>
+  <DocumentHead />
+  <body class="min-h-dvh flex flex-col high-dpi:antialiased">
+		<header class="pt-4 flex justify-center">
+			<LanguageSelect />
+		</header>
+    <slot />
+		<BackTopLink />
+  </body>
+</html>

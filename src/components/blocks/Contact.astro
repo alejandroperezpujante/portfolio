@@ -1,0 +1,60 @@
+---
+import type { BaseBlockProps } from '../../types'
+import GitHub from '~icons/lucide/github'
+import Linkedin from '~icons/lucide/linkedin'
+import Email from '~icons/lucide/mail'
+import { getLangFromUrl, useTranslations } from '../../i18n/utils'
+import BaseBlock from '../BaseBlock.astro'
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+
+const blockData: BaseBlockProps = {
+	id: t('home.contact.link'),
+	title: t('home.contact.title'),
+	subtitle: t('home.contact.description'),
+}
+
+const EMAIL = 'perezpujantealejandro1@gmail.com'
+const SOCIAL_LINKS = Object.freeze({
+	linkedin: {
+		icon: Linkedin,
+		link: 'https://www.linkedin.com/in/perezpujantealejandro/',
+	},
+	github: {
+		icon: GitHub,
+		link: 'https://github.com/alejandroperezpujante',
+	},
+});
+---
+
+<BaseBlock {...blockData}>
+	<div class="flex flex-col gap-4">
+		<div class="flex flex-col gap-2">
+			<h3 class="text-xl font-bold">{t('home.contact.email.title')}</h3>
+			<a href={`mailto:${EMAIL}`} class="flex items-center gap-2">
+				<Email class="w-4 h-4" />
+				{EMAIL}
+			</a>
+		</div>
+		<div class="flex flex-col gap-2">
+			<h3 class="text-xl font-bold">{t('home.contact.web.title')}</h3>
+			<ul class="flex flex-col gap-1">
+				{
+					Object.entries(SOCIAL_LINKS).map(([key, value]) => (
+						<li class="flex items-center gap-2">
+							<a
+								href={value.link}
+								target="_blank"
+								class="flex items-center gap-2"
+							>
+								<value.icon class="w-4 h-4" />
+								<span class="font-bold capitalize">{key}</span>
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</div>
+</BaseBlock>

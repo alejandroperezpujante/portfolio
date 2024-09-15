@@ -1,0 +1,17 @@
+---
+import About from '../components/blocks/About.astro'
+import Contact from '../components/blocks/Contact.astro'
+import Presentation from '../components/blocks/Presentation.astro'
+import Projects from '../components/blocks/Projects.astro'
+import DocumentLayout from './DocumentLayout.astro'
+
+---
+
+<DocumentLayout>
+  <main class="p-4 md:px-12">
+    <Presentation />
+		<About />
+		<Projects />
+		<Contact />
+  </main>
+</DocumentLayout>

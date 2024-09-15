@@ -1,0 +1,32 @@
+---
+import { PROJECT_LIST_LINK, PROJECTS } from '../../consts'
+import { getLangFromUrl, useTranslations } from '../../i18n/utils'
+import { BaseBlockProps } from '../../types'
+import BaseBlock from '../BaseBlock.astro'
+import ProjectCard from '../ProjectCard.astro'
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+
+const blockData: BaseBlockProps = {
+	title: t('home.projects.title'),
+	subtitle: t('home.projects.description'),
+	nextBlockId: t('home.contact.link'),
+};
+---
+
+<BaseBlock {...blockData}>
+	<ul class="flex flex-col items-center md:flex-row flex-wrap gap-4">
+		{
+			PROJECTS.map(project => (
+				<li>
+					<ProjectCard {project} />
+				</li>
+			))
+		}
+	</ul>
+
+	<a href={PROJECT_LIST_LINK} class="text-xl font-bold mx-auto">
+		{t('home.projects.more')}
+	</a>
+</BaseBlock>

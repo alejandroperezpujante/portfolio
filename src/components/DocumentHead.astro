@@ -1,0 +1,62 @@
+---
+import { AUTHOR, HEAD_KEYWORDS } from '../consts'
+import { getLangFromUrl, useTranslations } from '../i18n/utils'
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+const title = t('head.title')
+const description = t('head.description')
+const canonical = new URL(Astro.url, Astro.site);
+---
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<title>{title}</title>
+
+	<meta name="description" content={description} />
+	<meta name="author" content="Alejandro Perez Pujante" />
+	<meta name="keywords" content={HEAD_KEYWORDS.join(', ')} />
+	<meta name="robots" content="index, follow" />
+	<meta name="mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta
+		name="theme-color"
+		content="#FFFFFF"
+		media="(prefers-color-scheme: light)"
+	/>
+	<meta
+		name="theme-color"
+		content="#000000"
+		media="(prefers-color-scheme: dark)"
+	/>
+	<meta name="generator" content={Astro.generator} />
+
+	<meta name="og:title" content={title} />
+	<meta name="og:description" content={description} />
+	<meta
+		name="og:image"
+		content="/alejandro_perez_pujante_transparent_smaller.png"
+	/>
+	<meta name="og:url" content={canonical} />
+	<meta name="og:type" content="website" />
+	<meta name="og:site_name" content={AUTHOR} />
+
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={title} />
+	<meta name="twitter:description" content={description} />
+	<meta
+		name="twitter:image"
+		content="/alejandro_perez_pujante_transparent_smaller.png"
+	/>
+	<meta name="twitter:url" content={canonical} />
+	<meta name="twitter:site" content={AUTHOR} />
+
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+	<link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+	<link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
+	<link rel="manifest" href="/site.webmanifest" />
+	<link rel="canonical" href={canonical} />
+</head>

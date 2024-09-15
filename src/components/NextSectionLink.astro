@@ -1,0 +1,12 @@
+---
+import ChevronsDown from '~icons/lucide/chevrons-down'
+
+interface Props {
+	href: string
+}
+const { href } = Astro.props;
+---
+
+<a href={`#${href}`} aria-label={`Go to ${href}`} class="mx-auto text-4xl 4k:text-6xl animate-bounce">
+	<ChevronsDown />
+</a>

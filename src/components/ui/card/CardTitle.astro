@@ -1,6 +1,6 @@
 ---
-import type { HTMLTag } from 'astro/types';
-import { cn } from '../../../utils';
+import type { HTMLTag } from 'astro/types'
+import { cn } from '../../../utils'
 
 interface Props {
 	class?: string
@@ -10,6 +10,6 @@ interface Props {
 const { class: className, headingLevel: Element = 'h3' } = Astro.props;
 ---
 
-<Element class={cn("text-3xl font-bold", className)}>
+<Element class={cn('text-3xl font-bold', className)}>
 	<slot />
 </Element>

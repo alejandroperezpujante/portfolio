@@ -1,55 +1,46 @@
 ---
-import type { ImageMetadata } from "astro";
-import { Image } from "astro:assets";
-import * as Card from "./ui/card";
-import LucideGlobe from "~icons/lucide/globe";
-import LucideGitHub from "~icons/lucide/github";
-import LucideTriangleAlert from "~icons/lucide/triangle-alert";
+import type { RelevantGitHubRepoResponse } from '../types'
+import LucideGitHub from '~icons/lucide/github'
+import LucideGlobe from '~icons/lucide/globe'
+import * as Card from './ui/card'
 
 interface Props {
-  project: {
-		bannerImage: ImageMetadata;
-    title: string;
-		deploymentHref: string;
-		repoHref: string;
-    description: string;
-		isUnderConstruction?: boolean;
-  };
+  project: RelevantGitHubRepoResponse
 }
 
 const {
   project: {
-		bannerImage,
-		title,
-		deploymentHref,
-		repoHref,
+		name,
 		description,
-		isUnderConstruction = false
+		html_url,
+		homepage,
+		topics,
 	},
 } = Astro.props;
 ---
 
-<Card.Root class="h-full w-[350px]">
-	<Image src={bannerImage} alt={title} class="rounded" />
+<Card.Root class="h-[250px] w-[350px]">
 	<Card.Header class="flex-row">
 		<Card.Title class="flex items-center gap-2">
-			{title}
+			{name}
 		</Card.Title>
 		<nav class="flex-1 flex items-center justify-end gap-3">
-			<a href={deploymentHref} target="_blank" aria-label="Enlace a la demo">
-				<LucideGlobe class="size-5" />
-			</a>
-			<a href={repoHref} target="_blank" aria-label="Enlace el repositorio" rel="noopener noreferrer">
+			{homepage && (
+				<a href={homepage} target="_blank" aria-label="Enlace a la demo" rel="noopener noreferrer">
+					<LucideGlobe class="size-5" />
+				</a>
+			)}
+			<a href={html_url} target="_blank" aria-label="Enlace al repositorio" rel="noopener noreferrer">
 				<LucideGitHub class="size-5" />
 			</a>
 		</nav>
-		</Card.Header>
-  <Card.Content>{description}</Card.Content>
-
-	{isUnderConstruction && (
-		<Card.Footer class="gap-2 text-yellow-500">
-			<LucideTriangleAlert class="size-5" />
-			<span>En construcción</span>
-		</Card.Footer>
-	)}
+	</Card.Header>
+	<Card.Content>
+		<p>{description}</p>
+		<ul class="flex flex-wrap gap-2">
+			{topics.map(topic => (
+				<li class="bg-gray-200 text-gray-800 px-2 py-1 rounded-md text-sm font-medium">{topic}</li>
+			))}
+		</ul>
+	</Card.Content>
 </Card.Root>

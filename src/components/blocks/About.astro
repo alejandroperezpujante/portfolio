@@ -1,0 +1,49 @@
+---
+import type { BaseBlockProps } from '../../types'
+import { getLangFromUrl, useTranslations } from '../../i18n/utils'
+import BaseBlock from '../BaseBlock.astro'
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+
+const blockData: BaseBlockProps = {
+	id: t('home.about.link'),
+	title: t('home.about.title'),
+	nextBlockId: t('home.projects.link'),
+}
+
+const coreSkills = Object.values(t('home.about.core'))
+const additionalSkills = Object.values(t('home.about.additional'))
+---
+
+<BaseBlock {...blockData}>
+	<div class="flex flex-col md:flex-row gap-4">
+		<section class="space-y-2">
+			<h3 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl 4k:text-5xl font-bold">{t('home.about.core.title')}</h3>
+			<ul class="space-y-2">
+				{coreSkills.map((skill) => {
+					const [left, ...rest] = skill.split(':')
+					return (
+						<li class="text-base sm:text-lg md:text-xl lg:text-2xl 4k:text-3xl">
+							<span class="font-bold">{left}</span>{rest.length > 0 && `: ${rest.join(':')}`}
+						</li>
+					)
+				})}
+			</ul>
+		</section>
+		<hr class="inline-block md:h-[330px] 4k:h-[660px] border-2" />
+		<section class="space-y-2">
+			<h3 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl 4k:text-5xl font-bold">{t('home.about.additional.title')}</h3>
+			<ul class="space-y-2">
+				{additionalSkills.map((skill) => {
+					const [left, ...rest] = skill.split(':')
+					return (
+						<li class="text-base sm:text-lg md:text-xl lg:text-2xl 4k:text-3xl">
+							<span class="font-bold">{left}</span>{rest.length > 0 && `: ${rest.join(':')}`}
+						</li>
+					)
+				})}
+			</ul>
+		</section>
+	</div>
+</BaseBlock>

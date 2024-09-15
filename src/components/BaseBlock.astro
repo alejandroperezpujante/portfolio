@@ -1,0 +1,27 @@
+---
+import type { BaseBlockProps } from '../types'
+import NextSectionLink from './NextSectionLink.astro'
+
+interface Props extends BaseBlockProps {}
+
+const { id, title, subtitle, nextBlockId } = Astro.props;
+---
+
+<article class="min-h-dvh flex flex-col justify-center space-y-8">
+	<div class="space-y-2">
+		<h2 {id} class="text-4xl md:text-5xl lg:text-7xl 4k:text-9xl font-black">
+			{title}
+		</h2>
+		{subtitle && <h3 class="text-xl font-medium">{subtitle}</h3>}
+	</div>
+
+	<slot />
+
+	{
+		nextBlockId && (
+			<footer class="mx-auto">
+				<NextSectionLink href={nextBlockId} />
+			</footer>
+		)
+	}
+</article>

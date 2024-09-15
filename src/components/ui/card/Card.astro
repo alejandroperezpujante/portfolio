@@ -1,17 +1,17 @@
 ---
-import { cn } from "../../../utils";
+import { cn } from '../../../utils'
 
 interface Props {
-  class?: string;
+  class?: string
 }
 
 const { class: className } = Astro.props;
 ---
 
 <section
-  class={cn(
-    "p-4 my-4 bg-card text-card-foreground rounded-lg border shadow-sm",
-    className
+	class={cn(
+    'p-4 my-4 bg-card text-card-foreground rounded-lg border shadow-sm',
+    className,
   )}
 >
   <slot />
