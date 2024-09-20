@@ -1,7 +1,8 @@
 ---
-import { PROJECT_LIST_LINK, PROJECTS } from '../../consts'
-import { getLangFromUrl, useTranslations } from '../../i18n/utils'
+import { PROJECT_LIST_LINK } from '../../consts'
+import { fetchForTranslation, getLangFromUrl, useTranslations } from '../../i18n/utils'
 import { BaseBlockProps } from '../../types'
+import { fetchProjects } from '../../utils'
 import BaseBlock from '../BaseBlock.astro'
 import ProjectCard from '../ProjectCard.astro'
 
@@ -13,13 +14,22 @@ const blockData: BaseBlockProps = {
 	title: t('home.projects.title'),
 	subtitle: t('home.projects.description'),
 	nextBlockId: t('home.contact.link'),
-};
+}
+
+const projects = await fetchProjects()
+if (lang !== 'en') {
+	const descriptions = projects.map(project => project.description)
+	const translatedDescriptions = await fetchForTranslation(lang, descriptions)
+	projects.forEach((project, index) => {
+		project.description = translatedDescriptions[index]
+	})
+}
 ---
 
 <BaseBlock {...blockData}>
 	<ul class="flex flex-col items-center md:flex-row flex-wrap gap-4">
 		{
-			PROJECTS.map(project => (
+			projects.map(project => (
 				<li>
 					<ProjectCard {project} />
 				</li>

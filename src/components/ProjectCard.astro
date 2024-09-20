@@ -1,22 +1,18 @@
 ---
+import type { LanguageKey } from '../i18n/ui'
 import type { RelevantGitHubRepoResponse } from '../types'
 import LucideGitHub from '~icons/lucide/github'
 import LucideGlobe from '~icons/lucide/globe'
+import { fetchForTranslation, getLangFromUrl } from '../i18n/utils'
 import * as Card from './ui/card'
 
 interface Props {
-  project: RelevantGitHubRepoResponse
+	project: RelevantGitHubRepoResponse
 }
 
 const {
-  project: {
-		name,
-		description,
-		html_url,
-		homepage,
-		topics,
-	},
-} = Astro.props;
+	project: { name, description, html_url, homepage, topics },
+} = Astro.props
 ---
 
 <Card.Root class="h-[250px] w-[350px]">
@@ -25,12 +21,24 @@ const {
 			{name}
 		</Card.Title>
 		<nav class="flex-1 flex items-center justify-end gap-3">
-			{homepage && (
-				<a href={homepage} target="_blank" aria-label="Enlace a la demo" rel="noopener noreferrer">
-					<LucideGlobe class="size-5" />
-				</a>
-			)}
-			<a href={html_url} target="_blank" aria-label="Enlace al repositorio" rel="noopener noreferrer">
+			{
+				homepage && (
+					<a
+						href={homepage}
+						target="_blank"
+						aria-label="Enlace a la demo"
+						rel="noopener noreferrer"
+					>
+						<LucideGlobe class="size-5" />
+					</a>
+				)
+			}
+			<a
+				href={html_url}
+				target="_blank"
+				aria-label="Enlace al repositorio"
+				rel="noopener noreferrer"
+			>
 				<LucideGitHub class="size-5" />
 			</a>
 		</nav>
@@ -38,9 +46,13 @@ const {
 	<Card.Content>
 		<p>{description}</p>
 		<ul class="flex flex-wrap gap-2">
-			{topics.map(topic => (
-				<li class="bg-gray-200 text-gray-800 px-2 py-1 rounded-md text-sm font-medium">{topic}</li>
-			))}
+			{
+				topics.map(topic => (
+					<li class="bg-gray-200 text-gray-800 px-2 py-1 rounded-md text-sm font-medium">
+						{topic}
+					</li>
+				))
+			}
 		</ul>
 	</Card.Content>
 </Card.Root>

@@ -16,5 +16,4 @@ export const HEAD_KEYWORDS = [
 	'node',
 ]
 
-export const PROJECTS: RelevantGitHubRepoResponse[] = await fetchProjects()
 export const PROJECT_LIST_LINK = 'https://github.com/alejandroperezpujante?tab=repositories'
